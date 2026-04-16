@@ -1,0 +1,40 @@
+{
+  "name": "go-swaggo-highlight",
+  "displayName": "Go Swaggo Highlight",
+  "description": "Semantic highlighting for Swaggo annotations inside Go godoc comment blocks",
+  "version": "0.0.2",
+  "publisher": "miguel249",
+  "author": "Miguel249",
+  "license": "MIT",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:go"
+  ],
+  "engines": {
+    "vscode": "^1.116.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "go",
+    "golang",
+    "swaggo",
+    "swagger",
+    "highlight",
+    "godoc",
+    "semantic tokens"
+  ],
+  "galleryBanner": {
+    "color": "#0f172a",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/Miguel249/go-swaggo",
+  "bugs": {
+    "url": "https://github.com/Miguel249/go-swaggo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Miguel249/go-swaggo.git"
+  }
+}
