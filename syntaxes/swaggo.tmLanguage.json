@@ -1,0 +1,196 @@
+{
+  "scopeName": "swaggo.injection",
+  "injectionSelector": "L:source.go comment.line.double-slash.go",
+  "patterns": [
+    {
+      "include": "#swaggo"
+    }
+  ],
+  "repository": {
+    "swaggo": {
+      "patterns": [
+        {
+          "include": "#param"
+        },
+        {
+          "include": "#response"
+        },
+        {
+          "include": "#router"
+        },
+        {
+          "include": "#simpleAnnotation"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#booleans"
+        },
+        {
+          "include": "#goTypes"
+        }
+      ]
+    },
+    "simpleAnnotation": {
+      "patterns": [
+        {
+          "name": "storage.type.annotation.go",
+          "match": "@(Summary|Description|Tags|Accept|Produce)\\b"
+        }
+      ]
+    },
+    "param": {
+      "patterns": [
+        {
+          "begin": "(@Param)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.annotation.go"
+            }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "name": "variable.parameter.go",
+              "match": "(?<=@Param\\s+)[A-Za-z_][A-Za-z0-9_]*"
+            },
+            {
+              "name": "support.type.go",
+              "match": "(?<=@Param\\s+[A-Za-z_][A-Za-z0-9_]*\\s+)(path|query|header|body|formData)\\b"
+            },
+            {
+              "name": "storage.type.go",
+              "match": "(?<=@Param\\s+[A-Za-z_][A-Za-z0-9_]*\\s+(?:path|query|header|body|formData)\\s+)(string|bool|byte|rune|error|any|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|uintptr|float32|float64|interface\\{\\}|\\[\\][A-Za-z_][A-Za-z0-9_]*|\\*?[A-Z][A-Za-z0-9_]*)\\b"
+            },
+            {
+              "name": "constant.language.boolean.go",
+              "match": "(?<=@Param\\s+[A-Za-z_][A-Za-z0-9_]*\\s+(?:path|query|header|body|formData)\\s+(?:string|bool|byte|rune|error|any|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|uintptr|float32|float64|interface\\{\\}|\\[\\][A-Za-z_][A-Za-z0-9_]*|\\*?[A-Z][A-Za-z0-9_]*)\\s+)(true|false)\\b"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#goTypes"
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "patterns": [
+        {
+          "begin": "(@(?:Success|Failure))\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.annotation.go"
+            }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "name": "constant.numeric.integer.go",
+              "match": "(?<=@(?:Success|Failure)\\s+)\\d{3}\\b"
+            },
+            {
+              "name": "punctuation.section.braces.begin.go",
+              "match": "\\{"
+            },
+            {
+              "name": "punctuation.section.braces.end.go",
+              "match": "\\}"
+            },
+            {
+              "name": "support.type.go",
+              "match": "(?<=\\{)(object|array|string|number|integer|boolean)(?=\\})"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#goTypes"
+            }
+          ]
+        }
+      ]
+    },
+    "router": {
+      "patterns": [
+        {
+          "begin": "(@Router)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.annotation.go"
+            }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "name": "string.unquoted.go",
+              "match": "/[^\\s\\[]+"
+            },
+            {
+              "name": "variable.parameter.go",
+              "match": "\\{[A-Za-z_][A-Za-z0-9_]*\\}"
+            },
+            {
+              "name": "punctuation.section.brackets.begin.go",
+              "match": "\\["
+            },
+            {
+              "name": "punctuation.section.brackets.end.go",
+              "match": "\\]"
+            },
+            {
+              "name": "keyword.other.go",
+              "match": "(?<=\\[)(get|post|put|delete|patch|options|head)(?=\\])"
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.go",
+          "match": "\"[^\"\\r\\n]*\""
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.go",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.go",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "goTypes": {
+      "patterns": [
+        {
+          "name": "storage.type.go",
+          "match": "\\b(string|bool|byte|rune|error|any|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|uintptr|float32|float64)\\b"
+        },
+        {
+          "name": "storage.type.go",
+          "match": "\\binterface\\{\\}"
+        },
+        {
+          "name": "entity.name.type.go",
+          "match": "\\b(?:\\*|\\[\\])?[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

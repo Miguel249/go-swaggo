@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+test/**
+.gitignore
+.yarnrc
+.npmrc
+node_modules/**
+pnpm-lock.yaml
+vsc-extension-quickstart.md
+**/jsconfig.json
+**/*.map
+**/eslint.config.mjs
+**/.vscode-test.*
