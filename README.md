@@ -102,6 +102,48 @@ npx @vscode/vsce package --no-dependencies
 - Press `F5`
 - In the Extension Development Host, open a Go file with Swaggo comments
 
+## Publish to Marketplace
+
+### 1. Create the publisher
+
+Use the same publisher id configured in `package.json`:
+
+- Publisher id: `miguel249`
+
+Create it from the Visual Studio Marketplace publisher page and make sure the id matches exactly.
+
+### 2. Create a Personal Access Token
+
+Create a token in Azure DevOps / Visual Studio Marketplace with permission to manage extensions.
+
+### 3. Login with `vsce`
+
+```bash
+npx @vscode/vsce login miguel249
+```
+
+### 4. Publish
+
+For the current version:
+
+```bash
+npx @vscode/vsce publish
+```
+
+Or let `vsce` bump the version for you:
+
+```bash
+npx @vscode/vsce publish patch
+```
+
+### 5. Verify the package locally before publishing
+
+```bash
+npx @vscode/vsce package --no-dependencies
+```
+
+The extension already includes a Marketplace-ready icon at `assets/icon.png`.
+
 ## Known limitations
 
 - Highlighting currently targets line comments with `//`
